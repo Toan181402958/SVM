@@ -17,3 +17,11 @@ export interface NapHangACtion {
   location: string;
   listProduct: Array<ProductNapHang>;
 }
+
+//user
+export interface User {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+}

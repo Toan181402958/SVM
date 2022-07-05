@@ -14,7 +14,8 @@ import ChiTietLoi_CongViec from './screen/QLloi/component/ChiTietLoi_CongViec';
 import QLloi from './screen/QLloi/QLloi';
 import ChiTietMay from './screen/Qlmay/ChiTietMay';
 import QLmay from './screen/Qlmay/QLmay';
-import TaiKhoan from './screen/TaiKhoan';
+import ChinhSuaThongTin from './screen/TaiKhoan/ChinhSuaThongTin';
+import TaiKhoan from './screen/TaiKhoan/TaiKhoan';
 
 export type RootStackParams = {
   Home: undefined;
@@ -49,6 +50,12 @@ export type RootStackParams = {
     image: ImageSourcePropType;
     location: string;
     listProduct: Array<ProductNapHang>;
+  };
+  ChinhSuaThongTin: {
+    name: string;
+    id: string;
+    phone: string;
+    email: string;
   };
 };
 
@@ -174,6 +181,11 @@ const App = () => {
           <stack.Screen
             name="ItemLichSuNapHang"
             component={ItemLichSuNapHang}
+            options={{headerShown: false}}
+          />
+          <stack.Screen
+            name="ChinhSuaThongTin"
+            component={ChinhSuaThongTin}
             options={{headerShown: false}}
           />
         </stack.Navigator>
