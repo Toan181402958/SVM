@@ -12,19 +12,29 @@ import {
   View,
 } from 'react-native';
 import Svg, {Circle, Defs, LinearGradient, Path, Stop} from 'react-native-svg';
+import {useRecoilState} from 'recoil';
 import {RootStackParams} from '../../App';
+import {ImageUSerRecoil} from '../../atoms/atom';
 import {User} from '../../models/modelHistory';
 import {stylesUser} from './styleUser';
 
 let IS_MOUNTED = false;
+export const URL = 'https://62c2f951ff594c65676afff1.mockapi.io/history';
 const TaiKhoan = () => {
-  const URL = 'https://62c2f951ff594c65676afff1.mockapi.io/history';
-  const [listUser, setListUser] = useState([]);
+  const [user, setUser] = useState<User>({
+    id: '',
+    name: '',
+    phone: '',
+    email: '',
+  });
+
+  const [image, setImage] = useRecoilState(ImageUSerRecoil);
 
   const handleAxios = async () => {
-    const res = await (await axios.get(URL)).data;
-    setListUser(res);
-    console.log('item User', res);
+    const res: User = await (await axios.get(URL)).data[0];
+    // setListUser(res);
+    console.log('item User', res.name);
+    setUser(res);
   };
 
   useEffect(() => {
@@ -43,19 +53,21 @@ const TaiKhoan = () => {
           style={stylesUser.viewImage1}>
           <Image
             style={stylesUser.image}
-            source={require('../../assets/images/img_user_avatar.jpg')}
+            source={{
+              uri: image,
+            }}
           />
         </TouchableOpacity>
       </View>
       <View style={stylesUser.viewSecond}>
-        <Text style={stylesUser.textName}>{'listUser[0].name'}</Text>
-        <Text style={stylesUser.textPhone}>{'listUser[0].phone'}</Text>
+        <Text style={stylesUser.textName}>{user.name}</Text>
+        <Text style={stylesUser.textPhone}>{user.phone}</Text>
       </View>
       <ViewInfoUser
-        id={'listUser[0].id'}
-        name={'listUser[0].name'}
-        phone={'listUser[0].phone'}
-        email={'listUser[0].email'}
+        id={user.id}
+        name={user.name}
+        phone={user.phone}
+        email={user.email}
       />
       <ViewLogin />
     </View>

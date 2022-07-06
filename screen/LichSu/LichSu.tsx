@@ -10,14 +10,6 @@ import NapHang from './component/NapHang/NapHang';
 import RutTien from './component/RutTien';
 import SuaLoi from './component/SuaLoi';
 
-const FirstRoute = () => (
-  <View style={[styles.scene, {backgroundColor: '#ff4081'}]} />
-);
-
-const SecondRoute = () => (
-  <View style={[styles.scene, {backgroundColor: '#673ab7'}]} />
-);
-
 const initialLayout = {width: Dimensions.get('window').width};
 const initialLayoutHeight = {height: 80};
 
@@ -39,7 +31,7 @@ const LichSu = () => {
     <TabBar
       {...props}
       activeColor={'#FFFFFF'}
-      inactiveColor={'grey'}
+      inactiveColor={'rgba(255, 255, 255, 0.6)'}
       style={{backgroundColor: '#00DAD4', height: 44}}
       renderLabel={({route, focused, color}) => (
         <Text

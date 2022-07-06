@@ -60,3 +60,9 @@ export const DataWorkRecoil = atom({
   key: 'timework',
   default: 'Thời gian',
 });
+
+//image user
+export const ImageUSerRecoil = atom({
+  key: 'imageUSer',
+  default: 'https://api.adorable.io/avatars/80/abott@adorable.png',
+});
